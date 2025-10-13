@@ -1,9 +1,7 @@
-import { useEffect, useState } from "react";
-import dynamic from "next/dynamic";
+"use client";
 
-const Spline = dynamic(() => import("@splinetool/react-spline"), {
-  ssr: false
-});
+import { useState } from "react";
+import SplineWrapper from "@/components/SplineWrapper";
 
 function Landing() {
   const [isLoading, setIsLoading] = useState(true);
@@ -21,7 +19,7 @@ function Landing() {
       
           {/* Mobile: Spline Background */}
           <div className="lg:hidden absolute inset-0 z-0">
-            <Spline
+            <SplineWrapper
               scene="https://prod.spline.design/N4EV40kdovwSkyDl/scene.splinecode"
               onLoad={handleSplineLoad}
               className="w-full h-full"
@@ -50,18 +48,18 @@ function Landing() {
 
           {/* Desktop: Spline in Column */}
           <div className="hidden lg:block relative order-1 lg:order-2 h-[50vh] lg:h-auto">
-          {isLoading && (
-            <div className="absolute inset-0 flex items-center justify-center ">
-              <div className="text-xl">Loading ...</div>
-            </div>
-          )}
+            {isLoading && (
+              <div className="absolute inset-0 flex items-center justify-center ">
+                <div className="text-xl">Loading ...</div>
+              </div>
+            )}
 
-          {/* Desktop Spline */}
-          <Spline
-            scene="https://prod.spline.design/VhKXP4lgPLOeuJnF/scene.splinecode"
-            onLoad={handleSplineLoad}
-            className="w-full h-full"
-          />
+            {/* Desktop Spline */}
+            <SplineWrapper
+              scene="https://prod.spline.design/VhKXP4lgPLOeuJnF/scene.splinecode"
+              onLoad={handleSplineLoad}
+              className="w-full h-full"
+            />
           </div>
         </div>
 
