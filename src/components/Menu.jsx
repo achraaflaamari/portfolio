@@ -1,13 +1,16 @@
 import { FileUser, Home, Mail, MonitorCog, Tags } from "lucide-react";
 import React from "react";
+import MobileMenu from "./MobileMenu";
 
 function Menu() {
   return (
-    <div className=" animate-fade-down grid grid-cols-2 fixed z-50 w-full h-13 bg-transparent backdrop-blur-3xl">
-      <div className=" flex px-10 items-center   font-medium text-gray-300 anton text-2xl uppercase">
-        Achraf LAMARI
-      </div>
-      <div className=" flex justify-center items-center  text-sm font-medium text-gray-300 ">
+    <>
+      <MobileMenu />
+      <div className="hidden lg:grid animate-fade-down grid-cols-2 fixed z-50 w-full h-13 bg-transparent backdrop-blur-3xl">
+        <div className="flex px-10 items-center font-medium text-gray-300 anton text-2xl uppercase">
+          Achraf LAMARI
+        </div>
+        <div className="flex justify-center items-center text-sm font-medium text-gray-300">
         <button
           onClick={(e) => {
             e.preventDefault();
@@ -61,8 +64,9 @@ function Menu() {
         >
           Contact
         </button>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

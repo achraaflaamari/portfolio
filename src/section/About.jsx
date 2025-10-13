@@ -16,8 +16,8 @@ function About() {
         </div>
       </div> */}
       
-      <div className="w-full  h-full flex flex-col justify-center items-center p-8">
-          <p className=" text-gray-200 text-3xl text-center font-semibold">
+      <div className="w-full h-full flex flex-col justify-center items-center p-4 sm:p-6 lg:p-8">
+          <p className="text-gray-200 text-base sm:text-lg md:text-2xl lg:text-3xl text-center font-semibold leading-relaxed">
             As a{" "}
             <b className="text-green-400 anton">
               proficient Software Developer 💻{" "}

@@ -5,7 +5,7 @@ function skills() {
   return (
     <div
       id="Skills"
-      className=" grid lg:grid-cols-1  w-full h-screen relative bg-gray-900"
+      className="grid lg:grid-cols-1 w-full min-h-screen relative bg-gray-900"
     >
       <DomeGallery />
     </div>

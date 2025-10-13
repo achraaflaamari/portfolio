@@ -19,15 +19,15 @@ function ProjectCard({project}) {
       thickness={2}
       style={{ borderRadius: 16 }}
     >
-      <div className=" px-8 py-5 rounded-2xl h-full flex flex-col justify-between relative overflow-hidden">
+      <div className="px-4 sm:px-6 lg:px-8 py-4 sm:py-5 rounded-2xl h-full flex flex-col justify-between relative overflow-hidden">
 
 
         {/* Main Content */}
         <div className="mt-8 flex-1 flex flex-col justify-center">
-          <h2 className="text-3xl font-bold text-white mb-4 leading-tight">
+          <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-3 sm:mb-4 leading-tight">
             {project.name}
           </h2>
-          <p className="text-white/80 text-lg leading-relaxed max-w-md mb-6">
+          <p className="text-white/80 text-sm sm:text-base lg:text-lg leading-relaxed max-w-md mb-4 sm:mb-6">
             {project.title}
           </p>
           
@@ -45,7 +45,7 @@ function ProjectCard({project}) {
         </div>
 
         {/* Bottom Section */}
-        <div className="flex gap-3">
+        <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
           {project.githubUrl && (
             <button 
               onClick={() => window.open(project.githubUrl, '_blank')}
