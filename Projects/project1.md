@@ -1,0 +1,5 @@
+Découvrez "Cyber Security Card Game" un duel numérique où vous menez des attaques tout en protégeant votre propre serveur. À chaque tour, un choix crucial : utiliser votre énergie pour pirater l'adversaire ou renforcer vos défenses. Simple dans son approche mais riche en rebondissements, le jeu vous oppose à une IA dont vous percerez facilement la logique... mais qui vous réservera toujours des surprises
+Développé avec Next.js pour une expérience fluide, TypeScript pour un code robuste et Tailwind CSS pour une interface moderne, ce projet transforme les concepts de sécurité informatique en une aventure interactive où chaque décision compte.
+Projet réalisé en collaboration avec Achraf LAMARI encadré par CPU ISIMM au sein de ISIMM | Institut Supérieur d'Informatique et de Mathématiques de Monastir
+ Essayez le jeu : https://lnkd.in/efghhmht
+ Code source : https://lnkd.in/e5wSrpku
