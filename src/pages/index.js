@@ -3,25 +3,26 @@ import Head from "next/head";
 import Menu from "@/components/Menu";
 import Landing from "@/section/Landing";
 import { useState, useEffect, useRef } from "react";
-import About from "@/section/About";
+import dynamic from "next/dynamic";
 import ClickSpark from "@/components/ClickSpark";
-import Projects from "@/section/Projects";
-import Skills from "@/section/skills";
-import Contact from "@/section/Contact";
-// Import Spline dynamically to avoid SSR issues
+
+// Lazy load heavy components for better initial load
+const About = dynamic(() => import("@/section/About"), { ssr: true });
+const Projects = dynamic(() => import("@/section/Projects"), { ssr: true });
+const Skills = dynamic(() => import("@/section/skills"), { 
+  ssr: false,
+  loading: () => <div className="w-full min-h-screen bg-gray-900" />
+});
+const Contact = dynamic(() => import("@/section/Contact"), { ssr: true });
 
 export default function Home() {
   return (
     <div className="w-full  text-gray-300 bg-gray-900">
       <Head>
-        <title>Achraf LAMARI</title>
-        <meta name="description" content="3D scene using Spline in Next.js" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Anton&display=swap"
-          rel="stylesheet"
-        />
+        <title>Achraf LAMARI - Software Developer</title>
+        <meta name="description" content="Portfolio of Achraf LAMARI - Software Developer specializing in Next.js, React, and modern web technologies" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+        <meta name="theme-color" content="#111827" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <ClickSpark

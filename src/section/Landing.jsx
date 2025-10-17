@@ -1,11 +1,30 @@
 "use client";
 
-import { useState } from "react";
-import SplineWrapper from "@/components/SplineWrapper";
+import { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
+
+// Lazy load Spline only when needed
+const SplineWrapper = dynamic(() => import("@/components/SplineWrapper"), {
+  ssr: false,
+  loading: () => null,
+});
 
 function Landing() {
   const [isLoading, setIsLoading] = useState(true);
   const [showContent, setShowContent] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    // Show content immediately for better FCP
+    setShowContent(true);
+    
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const handleSplineLoad = () => {
     setIsLoading(false);
@@ -17,14 +36,9 @@ function Landing() {
   return (
     <div id="Landing" className="grid grid-cols-1 lg:grid-cols-2 w-full min-h-screen relative p-5">
       
-          {/* Mobile: Spline Background with optimizations */}
-          <div className="lg:hidden absolute inset-0 z-0">
-            {/* <SplineWrapper
-              scene="https://prod.spline.design/N4EV40kdovwSkyDl/scene.splinecode"
-              onLoad={handleSplineLoad}
-              className="w-full h-full"
-              enableInteraction={false}
-            /> */}
+          {/* Mobile: Simple gradient background for better performance */}
+          <div className="lg:hidden absolute inset-0 z-0 bg-gradient-to-br from-gray-900 via-gray-800 to-black">
+            {/* Spline disabled on mobile for optimal performance */}
           </div>
 
           {/* Text Content */}

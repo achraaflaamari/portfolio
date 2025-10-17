@@ -1,6 +1,18 @@
+"use client";
 
 import React from "react";
-import DomeGallery from "../components/DomeGallery";
+import dynamic from "next/dynamic";
+
+// Lazy load DomeGallery for better performance
+const DomeGallery = dynamic(() => import("../components/DomeGallery"), {
+  ssr: false,
+  loading: () => (
+    <div className="w-full h-screen flex items-center justify-center">
+      <div className="text-xl text-gray-400">Loading Skills...</div>
+    </div>
+  ),
+});
+
 function skills() {
   return (
     <div
