@@ -19,12 +19,12 @@ function Landing() {
       
           {/* Mobile: Spline Background with optimizations */}
           <div className="lg:hidden absolute inset-0 z-0">
-            <SplineWrapper
+            {/* <SplineWrapper
               scene="https://prod.spline.design/N4EV40kdovwSkyDl/scene.splinecode"
               onLoad={handleSplineLoad}
               className="w-full h-full"
               enableInteraction={false}
-            />
+            /> */}
           </div>
 
           {/* Text Content */}
