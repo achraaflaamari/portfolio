@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useCallback } from 'react';
+import { useEffect, useMemo, useRef, useCallback ,useState} from 'react';
 import { useGesture } from '@use-gesture/react';
 
 const DEFAULT_IMAGES = [
@@ -142,6 +142,21 @@ export default function DomeGallery({
   openedImageBorderRadius = '30px',
   grayscale = false
 }) {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Reduce segments on mobile for better performance (20 instead of 35)
+  // This reduces DOM elements from 175 to 100 on mobile
+  const effectiveSegments = isMobile ? 20 : segments;
+
   const rootRef = useRef(null);
   const mainRef = useRef(null);
   const sphereRef = useRef(null);
@@ -293,7 +308,22 @@ export default function DomeGallery({
       const frictionMul = 0.94 + 0.055 * d;
       const stopThreshold = 0.015 - 0.01 * d;
       const maxFrames = Math.round(90 + 270 * d);
-      const step = () => {
+      
+      // Throttle animation frames on mobile
+      let lastFrameTime = 0;
+      const frameInterval = isMobile ? 1000 / 30 : 0; // 30 FPS on mobile, 60 on desktop
+      
+      const step = (currentTime) => {
+        // Throttle on mobile
+        if (isMobile) {
+          const elapsed = currentTime - lastFrameTime;
+          if (elapsed < frameInterval) {
+            inertiaRAF.current = requestAnimationFrame(step);
+            return;
+          }
+          lastFrameTime = currentTime;
+        }
+        
         vX *= frictionMul;
         vY *= frictionMul;
         if (Math.abs(vX) < stopThreshold && Math.abs(vY) < stopThreshold) {
@@ -313,7 +343,7 @@ export default function DomeGallery({
       stopInertia();
       inertiaRAF.current = requestAnimationFrame(step);
     },
-    [dragDampening, maxVerticalRotationDeg, stopInertia]
+    [dragDampening, maxVerticalRotationDeg, stopInertia, isMobile]
   );
 
   useGesture(
@@ -682,7 +712,25 @@ export default function DomeGallery({
     .sphere-root * {
       box-sizing: border-box;
     }
-    .sphere, .sphere-item, .item__image { transform-style: preserve-3d; }
+    .sphere, .sphere-item, .item__image { 
+      transform-style: preserve-3d;
+    }
+    
+    @media (max-width: 1024px) {
+      .sphere {
+        will-change: auto;
+      }
+      .sphere-item {
+        transition: transform 150ms ease-out;
+      }
+      .item__image {
+        transition: transform 150ms ease-out;
+      }
+      /* Reduce GPU usage on mobile */
+      .item__image img {
+        image-rendering: -webkit-optimize-contrast;
+      }
+    }
     
     .stage {
       width: 100%;

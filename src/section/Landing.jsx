@@ -17,12 +17,13 @@ function Landing() {
   return (
     <div id="Landing" className="grid grid-cols-1 lg:grid-cols-2 w-full min-h-screen relative p-5">
       
-          {/* Mobile: Spline Background */}
+          {/* Mobile: Spline Background with optimizations */}
           <div className="lg:hidden absolute inset-0 z-0">
             <SplineWrapper
               scene="https://prod.spline.design/N4EV40kdovwSkyDl/scene.splinecode"
               onLoad={handleSplineLoad}
               className="w-full h-full"
+              enableInteraction={false}
             />
           </div>
 
