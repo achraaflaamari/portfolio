@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #ffffff;
+  --color-foreground: #171717;
+  
+  /* Palette de couleurs pastel */
+  --color-purple-light: #c4b5fd;
+  --color-purple-medium: #a78bfa;
+  --color-purple-dark: #8b5cf6;
+  --color-cyan-light: #a5f3fc;
+  --color-cyan-medium: #67e8f9;
+  --color-cyan-dark: #22d3ee;
+  --color-pink-light: #fbcfe8;
+  --color-pink-medium: #f9a8d4;
+  --color-pink-dark: #ec4899;
+  --color-blue-light: #bfdbfe;
+  --color-blue-medium: #93c5fd;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Fonts personnalisées */
+.font-display {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.font-body {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+}
